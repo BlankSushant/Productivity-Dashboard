@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productivity Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Abel&family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <video class="bg-video" autoplay loop muted playsinline>
+    <source src="Assets/FloatingCat.mp4" type="video/mp4" />
+  </video>
+
+  <div id="main">
+
+    <nav>
+      <h1>Productivity Dashboard</h1>
+      <div class="toggle-btn" id="themeToggle">
+        <i id="sun-icon" class="ri-sun-line"></i>
+        <div id="toggle-circle"></div>
+        <i id="moon-icon" class="ri-moon-fill"></i>
+      </div>
+    </nav>
+
+    <section class="page" id="dashboard">
+
+      <header class="dash-header">
+        <div class="header-left">
+          <h1 id="clock-time">00:00:00</h1>
+          <h4 id="clock-date">Loading...</h4>
+        </div>
+        <div class="header-right">
+          <h2 id="weath-temp">--°C</h2>
+          <h4 id="weath-condition">Weather</h4>
+          <p id="weath-humidity"></p>
+          <p id="weath-wind"></p>
+          <p id="weath-heat"></p>
+        </div>
+      </header>
+
+      <div class="cards-grid">
+
+        <div class="card" id="card-todo">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Katsushika_Hokusai_-_Thirty-Six_Views_of_Mount_Fuji-_The_Great_Wave_Off_the_Coast_of_Kanagawa_-_Google_Art_Project.jpg/3840px-Katsushika_Hokusai_-_Thirty-Six_Views_of_Mount_Fuji-_The_Great_Wave_Off_the_Coast_of_Kanagawa_-_Google_Art_Project.jpg"
+            alt="To Do" />
+          <h2>To Do List</h2>
+        </div>
+
+        <div class="card" id="card-planner">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Katsushika_Hokusai%2C_published_by_Nishimuraya_Yohachi_%28Eijud%C5%8D%29_-_Fine_Wind%2C_Clear_Weather_%28Gaif%C5%AB_kaisei%29%2C_also_known_as_Red_Fuji%2C_from_the_series_Thirty-six_Views_o..._-_Google_Art_Project_-_Cropped.jpg/3840px-thumbnail.jpg"
+            alt="Planner" />
+          <h2>Daily Planner</h2>
+        </div>
+
+        <div class="card" id="card-quotes">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Nihonbashi_bridge_in_Edo.jpg/3840px-Nihonbashi_bridge_in_Edo.jpg"
+            alt="Quotes" />
+          <h2>Motivation</h2>
+        </div>
+
+        <div class="card" id="card-timer">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Katsushika_Hokusai%2C_Goten-yama_hill%2C_Shinagawa_on_the_T%C5%8Dkaid%C5%8D%2C_ca._1832.jpg/1920px-Katsushika_Hokusai%2C_Goten-yama_hill%2C_Shinagawa_on_the_T%C5%8Dkaid%C5%8D%2C_ca._1832.jpg?_=20120331220342"
+            alt="Timer" />
+          <h2>Pomodoro Timer</h2>
+        </div>
+
+        <div class="card" id="card-goals">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/%D0%98%D0%B2%D0%B0%D0%BD_%D0%9A._%D0%90%D0%B9%D0%B2%D0%B0%D0%B7%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9_-_%D0%9E%D1%82_%D0%9C%D0%BB%D0%B5%D1%82%D1%8B_%D0%B4%D0%BE_%D0%93%D1%83%D0%B4%D0%B0%D1%83%D1%80%D0%B8_%281868%29.jpg/3840px-%D0%98%D0%B2%D0%B0%D0%BD_%D0%9A._%D0%90%D0%B9%D0%B2%D0%B0%D0%B7%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9_-_%D0%9E%D1%82_%D0%9C%D0%BB%D0%B5%D1%82%D1%8B_%D0%B4%D0%BE_%D0%93%D1%83%D0%B4%D0%B0%D1%83%D1%80%D0%B8_%281868%29.jpg"
+            alt="Goals" />
+          <h2>Daily Goals</h2>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="page feature-page" id="page-todo">
+      <button class="close-btn" id="close-todo">&#x2715; Close</button>
+      <h2 class="page-title">Your Task List</h2>
+      <div class="todo-wrap">
+
+        <div class="todo-form-box">
+          <form id="task-form">
+            <input type="text" id="task-name-input" placeholder="Task name" />
+            <textarea id="task-details-input" placeholder="Details..."></textarea>
+            <div class="check-row">
+              <input type="checkbox" id="task-imp-check" />
+              <label for="task-imp-check">Mark as Important</label>
+            </div>
+            <button type="submit">Add Task</button>
+          </form>
+        </div>
+
+        <div class="todo-list-box" id="task-list-container">
+        </div>
+
+      </div>
+    </section>
+
+    <section class="page feature-page" id="page-planner">
+      <button class="close-btn" id="close-planner">&#x2715; Close</button>
+      <h2 class="page-title">Plan Your Day</h2>
+      <div class="planner-grid" id="planner-grid-container">
+      </div>
+    </section>
+
+    <section class="page feature-page" id="page-quotes">
+      <button class="close-btn" id="close-quotes">&#x2715; Close</button>
+      <div class="quote-box">
+        <div class="quote-label">
+          <i class="ri-double-quotes-l"></i>
+          <h2>Quote of the Day</h2>
+        </div>
+        <div class="quote-body">
+          <p id="quote-text-display">Loading quote...</p>
+          <div class="quote-author-row">
+            <p id="quote-author-display"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page feature-page" id="page-timer">
+      <button class="close-btn" id="close-timer">&#x2715; Close</button>
+      <h2 class="page-title">Pomodoro Timer</h2>
+      <div class="pomo-box">
+        <h3 id="session-label">Work Session</h3>
+        <h1 id="pomo-display">25:00</h1>
+        <div class="pomo-btns">
+          <button class="pomo-start" id="btn-start">Start</button>
+          <button class="pomo-pause" id="btn-pause">Pause</button>
+          <button class="pomo-reset" id="btn-reset">Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="page feature-page" id="page-goals">
+      <button class="close-btn" id="close-goals">&#x2715; Close</button>
+      <h2 class="page-title">Daily Goals</h2>
+      <div class="goals-wrap">
+
+        <div class="goals-form-box">
+          <input type="text" id="goal-text-input" placeholder="Add a goal..." />
+          <button id="btn-add-goal">Add Goal</button>
+        </div>
+
+        <div class="goals-list-box" id="goals-list-container">
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
