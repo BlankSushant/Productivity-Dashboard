@@ -81,7 +81,7 @@ function weatherAndTime() {
         showTime()
     }, 1000)
 
-    var weatherAPIKey = "347c1757e128ff7f3d023d627b9c20f6"
+    var weatherAPIKey = "0105e0de6fc86de2747836bfe9531821"
 
     weatherTempEl.innerHTML = '--°C'
     weatherConditionEl.innerHTML = 'Loading...'
