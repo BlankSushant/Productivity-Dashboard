@@ -81,24 +81,42 @@ function weatherAndTime() {
         showTime()
     }, 1000)
 
-    async function callWeatherAPI() {
-        try {
-            var weatherKey = "5a762dd80e4942b9a08163622252606&q"
-            var weatherCity = 'Bhubaneswar'
-            var weatherResponse = await fetch('http://api.weatherapi.com/v1/current.json?key=' + weatherKey + '=' + weatherCity)
-            var weatherData = await weatherResponse.json()
-            weatherTempEl.innerHTML = weatherData.current.temp_c + '°C'
-            weatherConditionEl.innerHTML = weatherData.current.condition.text
-            weatherWindEl.innerHTML = 'Wind: ' + weatherData.current.wind_kph + ' km/h'
-            weatherHumidityEl.innerHTML = 'Humidity: ' + weatherData.current.humidity + '%'
-            weatherHeatEl.innerHTML = 'Heat Index: ' + weatherData.current.heatindex_c + '°C'
-        } catch (err) {
-            weatherTempEl.innerHTML = '--°C'
-            weatherConditionEl.innerHTML = 'Weather unavailable'
-        }
+    var weatherAPIKey = "347c1757e128ff7f3d023d627b9c20f6"
+
+    weatherTempEl.innerHTML = '--°C'
+    weatherConditionEl.innerHTML = 'Loading...'
+
+    if (!navigator.geolocation) {
+        weatherTempEl.innerHTML = '--°C'
+        weatherConditionEl.innerHTML = 'Not available'
+        return
     }
 
-    callWeatherAPI()
+    navigator.geolocation.getCurrentPosition(
+        async function (position) {
+            var lat = position.coords.latitude
+            var lon = position.coords.longitude
+            try {
+                var weatherResponse = await fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=' + weatherAPIKey + '&units=metric')
+                var weatherData = await weatherResponse.json()
+                if (!weatherResponse.ok) {
+                    throw new Error(weatherData.message)
+                }
+                weatherTempEl.innerHTML = Math.round(weatherData.main.temp) + '°C'
+                weatherConditionEl.innerHTML = weatherData.name + ' — ' + weatherData.weather[0].description
+                weatherHumidityEl.innerHTML = 'Humidity: ' + weatherData.main.humidity + '%'
+                weatherWindEl.innerHTML = 'Wind: ' + weatherData.wind.speed + ' km/h'
+                weatherHeatEl.innerHTML = 'Feels like: ' + Math.round(weatherData.main.feels_like) + '°C'
+            } catch (err) {
+                weatherTempEl.innerHTML = '--°C'
+                weatherConditionEl.innerHTML = 'Not available'
+            }
+        },
+        function (err) {
+            weatherTempEl.innerHTML = '--°C'
+            weatherConditionEl.innerHTML = 'Not available'
+        }
+    )
 }
 
 weatherAndTime()
